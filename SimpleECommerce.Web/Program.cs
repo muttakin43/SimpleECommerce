@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using SimpleCommerce.BLL.Services;
+using SimpleECommerce.BLL.Interface;
+using SimpleECommerce.BLL.Services;
 using SimpleECommerce.DAL.Context;
+using SimpleECommerce.DAL.Implementation;
+using SimpleECommerce.DAL.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +13,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<SimpleECommerceDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryServise, CategoryService>();
 
 var app = builder.Build();
 
@@ -25,6 +34,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
 
 app.MapControllerRoute(
     name: "default",

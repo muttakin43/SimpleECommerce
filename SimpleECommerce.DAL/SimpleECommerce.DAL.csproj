@@ -22,8 +22,4 @@
     <ProjectReference Include="..\SimpleECommerce.Model\SimpleECommerce.Model.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Implementation\" />
-  </ItemGroup>
-
 </Project>

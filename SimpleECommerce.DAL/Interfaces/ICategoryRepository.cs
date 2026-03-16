@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleECommerce.DAL.Interfaces
 {
-    public interface IProductRepository : IGenericRepository<Product>
+    public interface ICategoryRepository : IGenericRepository<Category>
     {
-        Task<int> CountProductsAsync();
     }
 }
